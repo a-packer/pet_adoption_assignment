@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    Pet Adoption Home
+{% endblock %}
+
+{% block content %}
+
+<h1 style="font-family: 'Comfortaa', cursive; margin-bottom: 10px; font-size: 50px;">Pets For Adoption</h1>
+<a href="/add" class="btn btn-primary" style="margin-bottom: 10px;">Add Pet</a>
+
+<div class="container">
+<div class="row">
+{% for pet in pets %}
+    <div class="col-md-4 panel panel-{% if pet.available == True %}success{% else %}danger{% endif %}">
+        <h3 class="panel-heading">{{pet.name}}</h3>
+        
+        <div class="panel-body">
+            <p>{% if pet.available == True %}Available for Adoption{% else %}Not Available{% endif %}</p>
+            <img src="{{pet.photo_url}}" alt="{{pet.name}} the {{pet.species}}" width=100%>
+            <a href="/{{pet.id}}" class="btn btn-warning">Edit Pet</a>
+        </div>
+    </div>
+
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}
